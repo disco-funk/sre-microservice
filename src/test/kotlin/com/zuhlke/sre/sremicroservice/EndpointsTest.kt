@@ -1,7 +1,6 @@
 package com.zuhlke.sre.sremicroservice
 
-import junit.framework.Assert.assertEquals
-import junit.framework.Assert.assertNotNull
+import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -18,10 +17,9 @@ class EndpointsTest {
     lateinit var testRestTemplate: TestRestTemplate
 
     @Test
-    fun testGreetingController() {
-        val result = testRestTemplate.getForEntity("/greeting", String::class.java)
-        assertNotNull(result)
-        assertEquals(result.statusCode, HttpStatus.OK)
-        //assertEquals(result.body, "Hello string!")
+    fun testIsAliveController() {
+        val result = testRestTemplate.getForEntity("/isAlive", String::class.java)
+        assertEquals(HttpStatus.OK, result.statusCode)
+        assertEquals("{\"status\":\"Active\"}", result.body)
     }
 }
