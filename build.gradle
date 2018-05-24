@@ -47,4 +47,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
     compile group: 'org.springframework', name: 'spring-web', version: '5.0.6.RELEASE'
+	compile group: 'org.mongodb', name: 'mongodb-driver-reactivestreams', version: '1.8.0'
+    compileOnly "org.projectlombok:lombok:1.16.16"
+    compile group: 'io.projectreactor', name: 'reactor-core'
+
 }
