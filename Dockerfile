@@ -11,4 +11,4 @@ RUN chmod u+x /tmp/buildandstart.sh && \
     cd /src && \
     git clone https://github.com/disco-funk/sre-microservice.git
 EXPOSE 8080
-ENTRYPOINT ["/tmp/buildandstart.sh"]
+ENTRYPOINT /tmp/buildandstart.sh
