@@ -1,9 +1,14 @@
-FROM mongo
+FROM alpine
 
-RUN apt-get update
-RUN apt-get -y install wget
-RUN wget http://media.mongodb.org/zips.json
-RUN mongod --fork --logpath /var/log/mongod.log
-RUN until pids=$(pidof mongod); do ps -Af; sleep 1;  done
-RUN mongoimport -v --file=zips.json
-
+COPY buildandstart.sh /tmp/buildandstart.sh
+ENV PATH $PATH:/opt/gradle/gradle-4.7/bin
+RUN chmod u+x /tmp/buildandstart.sh && \
+    mkdir /opt && mkdir /opt/gradle && mkdir /src && \
+    apk update && \
+    apk add wget unzip openjdk8 git && \
+    wget https://services.gradle.org/distributions/gradle-4.7-bin.zip && \
+    unzip -d /opt/gradle gradle-4.7-bin.zip && \
+    cd /src && \
+    git clone https://github.com/disco-funk/sre-microservice.git
+EXPOSE 8080 8080/tcp
+ENTRYPOINT exec /tmp/buildandstart.sh
