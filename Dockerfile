@@ -10,5 +10,5 @@ RUN chmod u+x /tmp/buildandstart.sh && \
     unzip -d /opt/gradle gradle-4.7-bin.zip && \
     cd /src && \
     git clone https://github.com/disco-funk/sre-microservice.git
-EXPOSE 8080 8080/tcp
-ENTRYPOINT exec /tmp/buildandstart.sh
+EXPOSE 8080
+ENTRYPOINT ["/tmp/buildandstart.sh"]
