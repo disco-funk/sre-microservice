@@ -26,8 +26,8 @@ apply plugin: 'io.spring.dependency-management'
 group = 'com.zuhlke.sre'
 sourceCompatibility = 1.8
 
-if (project.hasProperty('buildNum')) {
-	project.version = project.buildNum
+if (project.hasProperty('releaseVersion')) {
+	project.version = project.releaseVersion
 } else {
 	project.version = snapshotVersion
 }
