@@ -1,7 +1,9 @@
 FROM alpine
 
-COPY build/libs/sre-microservice-0.0.1-SNAPSHOT.jar sre-microservice-0.0.1-SNAPSHOT.jar
+ARG RELEASE_VERSION
+ENV RELEASE_VERSION ${RELEASE_VERSION}
+COPY build/libs/sre-microservice-$RELEASE_VERSION.jar sre-microservice-$RELEASE_VERSION.jar
 RUN apk update && \
     apk add openjdk8
 EXPOSE 8080
-ENTRYPOINT java -jar sre-microservice-0.0.1-SNAPSHOT.jar
+ENTRYPOINT java -jar sre-microservice-$RELEASE_VERSION.jar
