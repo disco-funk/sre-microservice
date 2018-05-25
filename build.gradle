@@ -1,3 +1,7 @@
+final def jsonFile = file('version.json')
+final def parsedJson = new groovy.json.JsonSlurper().parseText(jsonFile.text)
+final def snapshotVersion = parsedJson.version
+
 buildscript {
 	ext {
 		kotlinVersion = '1.2.41'
@@ -20,14 +24,21 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 group = 'com.zuhlke.sre'
-version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
+
+if (project.hasProperty('buildNum')) {
+	project.version = snapshotVersion.replace('0-SNAPSHOT', project.buildNum)
+} else {
+	project.version = snapshotVersion
+}
+
 compileKotlin {
 	kotlinOptions {
 		freeCompilerArgs = ["-Xjsr305=strict"]
 		jvmTarget = "1.8"
 	}
 }
+
 compileTestKotlin {
 	kotlinOptions {
 		freeCompilerArgs = ["-Xjsr305=strict"]
@@ -38,7 +49,6 @@ compileTestKotlin {
 repositories {
 	mavenCentral()
 }
-
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-mongodb')
