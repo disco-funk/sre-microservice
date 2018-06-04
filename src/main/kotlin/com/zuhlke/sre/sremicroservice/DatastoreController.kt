@@ -28,9 +28,7 @@ class DatastoreController {
         val db = mongoClient.getDatabase("test")
         val col = db.getCollection<User>()
 
-        val user: User? = col.findOne(User :: name eq name)
-
-        return user
+        return col.findOne(User :: name eq name)
     }
 
 }
