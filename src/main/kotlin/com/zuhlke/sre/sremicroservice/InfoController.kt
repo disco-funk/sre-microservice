@@ -6,11 +6,15 @@ import java.util.concurrent.Executor
 import java.util.concurrent.atomic.AtomicLong
 
 @RestController
-class IsAliveController {
+class InfoController {
 
     val counter = AtomicLong()
 
     @GetMapping("/isAlive")
     fun greeting() =
             IsAlive("Active")
+
+    @GetMapping("/version")
+    fun getVersion() =
+            Version(SreMicroserviceApplication.version)
 }

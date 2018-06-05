@@ -7,4 +7,4 @@ COPY ./build/libs/sre-microservice-$RELEASE_VERSION.jar sre-microservice-$RELEAS
 RUN apk update && \
     apk add openjdk8
 EXPOSE 8080
-ENTRYPOINT java -jar sre-microservice-$RELEASE_VERSION.jar
+ENTRYPOINT java -jar sre-microservice-$RELEASE_VERSION.jar $RELEASE_VERSION

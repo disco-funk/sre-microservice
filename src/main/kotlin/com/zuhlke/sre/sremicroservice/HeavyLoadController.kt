@@ -8,6 +8,7 @@ import java.util.concurrent.Executors
 
 @RestController
 class HeavyLoadController {
+
     var executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors())
     val logger = LoggerFactory.getLogger(HeavyLoadController::class.java)
 
