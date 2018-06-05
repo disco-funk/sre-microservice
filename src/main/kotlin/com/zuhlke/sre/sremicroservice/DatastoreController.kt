@@ -17,7 +17,7 @@ class DatastoreController {
     @PostMapping("/saveUser")
     fun saveUser(user: User): User {
         logger.debug("Reached /saveUser endpoint")
-        val mongoClient = KMongo.createClient("localhost", 27017)
+        val mongoClient = KMongo.createClient("sre-mongodb.default.svc.cluster.local", 27017)
         val db = mongoClient.getDatabase("test")
         val col = db.getCollection<User>()
         logger.debug("Connected to MongoDB")
@@ -29,7 +29,7 @@ class DatastoreController {
     @GetMapping("/getUserByName")
     fun getUser(@RequestParam("name") name: String): User? {
         logger.debug("Reached /getUserByName endpoint")
-        val mongoClient = KMongo.createClient("localhost", 27017)
+        val mongoClient = KMongo.createClient("sre-mongodb.default.svc.cluster.local", 27017)
         val db = mongoClient.getDatabase("test")
         val col = db.getCollection<User>()
         logger.debug("Connected to MongoDB")
