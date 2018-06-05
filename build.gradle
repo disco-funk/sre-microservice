@@ -57,6 +57,5 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
     compile group: 'org.springframework', name: 'spring-web', version: '5.0.6.RELEASE'
-	compile group: 'org.mongodb', name: 'mongo-java-driver', version: '3.7.1'
 	compile 'org.litote.kmongo:kmongo:3.7.0'
 }

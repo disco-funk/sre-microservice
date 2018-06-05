@@ -1,3 +1,5 @@
 package com.zuhlke.sre.sremicroservice
 
-data class User(val id: Int, val name: String)
+import org.springframework.data.annotation.Id
+
+data class User(@Id val id: String, val name: String)
